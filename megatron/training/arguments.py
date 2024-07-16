@@ -1194,7 +1194,14 @@ def _add_training_args(parser):
     group.add_argument('--disable-tp-comm-split-rs', action='store_false',
                        help='Disables the Reduce-Scatter overlap with fprop GEMM.',
                        dest='tp_comm_split_rs')
-
+    group.add_argument('--softmax-scale',  type=float, default=1.0, 
+                       help='Scale the softmax output by this value.')
+    group.add_argument('--softcap', type=float, default=0.0,
+                       help='Softcap used in gemma2 and grok. If set to 0.0, it will not be used.')
+    group.add_argument('--window-size',type=int, default=None,
+                       help='Window size used for sliding window,'
+                       'if window-size==4096,transformerconfig window_size will be set (4096,0)'
+                       )
     return parser
 
 

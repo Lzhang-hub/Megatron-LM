@@ -102,6 +102,12 @@ class TransformerConfig(ModelParallelConfig):
     """Whether cross entropy loss is calculated over the actual number of non-padded tokens in the
     global batch, versus the default behavior of assuming all tokens are non-padded."""
 
+    softmax_scale: float = 1.0
+    """Scale the softmax output by this value. This is useful for scaling the output of the softmax"""
+    
+    softcap: float = 0.0
+    """If set to a value greater than 0.0, the attention is softcapped at this value."""
+
     ####################
     # initialization
     ####################

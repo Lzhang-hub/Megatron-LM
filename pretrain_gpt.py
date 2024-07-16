@@ -57,6 +57,8 @@ def model_provider(pre_process=True, post_process=True) -> Union[GPTModel, megat
         config = core_transformer_config_from_yaml(args, "language_model")
     else:
         config = core_transformer_config_from_args(args)
+    if args.window_size is not None:
+        config.window_size=(args.window_size, 0)
 
     if args.use_legacy_models:
         model = megatron.legacy.model.GPTModel(
